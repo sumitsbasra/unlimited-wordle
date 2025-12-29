@@ -197,10 +197,8 @@ export default function Wordle() {
 
       // Validate word
       setIsValidating(true);
-      setMessage('Checking...');
       const isValid = await validateWord(currentGuess);
       setIsValidating(false);
-      setMessage('');
 
       if (!isValid) {
         setShake(true);
