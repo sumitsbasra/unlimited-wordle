@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%; background: #1e293b;">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Unlimited Wordle - Play as many games as you want with three difficulty levels" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="theme-color" content="#1e293b" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="theme-color" content="#f1f5f9" id="theme-color-meta" />
     <title>Unlimited Wordle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -15,7 +15,7 @@
       }
       html {
         height: 100%;
-        background: #1e293b;
+        transition: background-color 0.3s ease;
       }
       body {
         margin: 0;
@@ -23,10 +23,10 @@
         overflow-x: hidden;
         min-height: 100vh;
         min-height: 100dvh;
-        background: #1e293b;
         position: fixed;
         width: 100%;
         overscroll-behavior: none;
+        transition: background-color 0.3s ease;
       }
       #root {
         min-height: 100vh;

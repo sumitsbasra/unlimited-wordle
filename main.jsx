@@ -59,12 +59,27 @@ export default function Wordle() {
   const [isValidating, setIsValidating] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Detect system dark mode preference
+  // Detect system dark mode preference and update theme colors
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDarkMode(mediaQuery.matches);
+    const updateTheme = (isDark) => {
+      setIsDarkMode(isDark);
 
-    const handler = (e) => setIsDarkMode(e.matches);
+      // Update theme-color meta tag
+      const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+      const bgColor = isDark ? '#0f172a' : '#f1f5f9';
+      if (themeColorMeta) {
+        themeColorMeta.setAttribute('content', bgColor);
+      }
+
+      // Update html and body background colors
+      document.documentElement.style.background = bgColor;
+      document.body.style.background = bgColor;
+    };
+
+    updateTheme(mediaQuery.matches);
+
+    const handler = (e) => updateTheme(e.matches);
     mediaQuery.addEventListener('change', handler);
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
