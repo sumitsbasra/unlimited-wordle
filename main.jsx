@@ -315,8 +315,8 @@ export default function Wordle() {
     
     const result = won ? `${guesses.length}/6` : 'X/6';
     const diffLabel = difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
-    
-    return `Wordle (${diffLabel}) ${result}\n\n${grid}`;
+
+    return `Wordle+ (${diffLabel}) ${result}\n\n${grid}`;
   };
 
   const copyToClipboard = async () => {
@@ -592,7 +592,7 @@ export default function Wordle() {
             </div>
 
             <h1 className="absolute left-1/2 -translate-x-1/2 text-3xl font-bold tracking-wider bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              wordle
+              wordle+
             </h1>
 
             {/* Stats Summary */}
