@@ -57,6 +57,17 @@ export default function Wordle() {
   const [copied, setCopied] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isValidating, setIsValidating] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Detect system dark mode preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    setIsDarkMode(mediaQuery.matches);
+
+    const handler = (e) => setIsDarkMode(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
 
   // Load stats from storage on mount
   useEffect(() => {
@@ -325,7 +336,7 @@ export default function Wordle() {
     const isRevealed = revealedTiles[tileKey];
 
     let glassClass = 'glass-tile';
-    let textColor = 'text-gray-800';
+    let textColor = isDarkMode ? 'text-gray-200' : 'text-gray-800';
 
     if (isRevealed && status) {
       if (status === 'correct') {
@@ -340,7 +351,7 @@ export default function Wordle() {
       }
     } else if (letter && isCurrentRow) {
       glassClass = 'glass-tile';
-      textColor = 'text-gray-900';
+      textColor = isDarkMode ? 'text-white' : 'text-gray-900';
     }
 
     const animationDelay = rowRevealing ? `${index * 0.3}s` : '0s';
@@ -396,11 +407,23 @@ export default function Wordle() {
   return (
     <div className="min-h-screen flex flex-col items-center py-4 px-2 relative overflow-hidden">
       {/* Gradient Background */}
-      <div className="fixed inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 -z-10" />
+      <div className={`fixed inset-0 -z-10 ${
+        isDarkMode
+          ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800'
+          : 'bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50'
+      }`} />
 
       {/* Animated Gradient Orbs */}
-      <div className="fixed top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-purple-400/30 rounded-full blur-3xl animate-float-slow -z-10" />
-      <div className="fixed bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-pink-400/30 to-orange-400/30 rounded-full blur-3xl animate-float-delayed -z-10" />
+      <div className={`fixed top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-float-slow -z-10 ${
+        isDarkMode
+          ? 'bg-gradient-to-br from-indigo-500/20 to-purple-500/20'
+          : 'bg-gradient-to-br from-blue-400/30 to-purple-400/30'
+      }`} />
+      <div className={`fixed bottom-0 right-0 w-96 h-96 rounded-full blur-3xl animate-float-delayed -z-10 ${
+        isDarkMode
+          ? 'bg-gradient-to-br from-purple-500/20 to-pink-500/20'
+          : 'bg-gradient-to-br from-pink-400/30 to-orange-400/30'
+      }`} />
 
       <style>{`
         @keyframes flip {
@@ -453,25 +476,25 @@ export default function Wordle() {
           animation: floatDelayed 25s ease-in-out infinite;
         }
         .glass {
-          background: rgba(255, 255, 255, 0.7);
+          background: ${isDarkMode ? 'rgba(30, 41, 59, 0.7)' : 'rgba(255, 255, 255, 0.7)'};
           backdrop-filter: blur(20px) saturate(180%);
           -webkit-backdrop-filter: blur(20px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.5);
+          border: 1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.5)'};
         }
         .glass-dark {
-          background: rgba(0, 0, 0, 0.3);
+          background: ${isDarkMode ? 'rgba(15, 23, 42, 0.8)' : 'rgba(0, 0, 0, 0.3)'};
           backdrop-filter: blur(20px) saturate(180%);
           -webkit-backdrop-filter: blur(20px) saturate(180%);
         }
         .glass-tile {
-          background: rgba(255, 255, 255, 0.9);
+          background: ${isDarkMode ? 'rgba(51, 65, 85, 0.6)' : 'rgba(255, 255, 255, 0.9)'};
           backdrop-filter: blur(10px);
           -webkit-backdrop-filter: blur(10px);
-          border: 1.5px solid rgba(255, 255, 255, 0.8);
+          border: 1.5px solid ${isDarkMode ? 'rgba(148, 163, 184, 0.3)' : 'rgba(255, 255, 255, 0.8)'};
           box-shadow:
-            0 4px 6px rgba(0, 0, 0, 0.05),
-            0 1px 3px rgba(0, 0, 0, 0.05),
-            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            0 4px 6px rgba(0, 0, 0, ${isDarkMode ? '0.3' : '0.05'}),
+            0 1px 3px rgba(0, 0, 0, ${isDarkMode ? '0.2' : '0.05'}),
+            inset 0 1px 0 ${isDarkMode ? 'rgba(148, 163, 184, 0.2)' : 'rgba(255, 255, 255, 0.9)'};
         }
         .glass-correct {
           background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
@@ -550,7 +573,7 @@ export default function Wordle() {
             </h1>
 
             {/* Stats Summary */}
-            <div className="text-xs font-semibold text-gray-700 text-right">
+            <div className={`text-xs font-semibold text-right ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               <div>{stats.won}W - {stats.played - stats.won}L</div>
               <div className="text-base">🔥 {stats.currentStreak}</div>
             </div>
@@ -577,7 +600,7 @@ export default function Wordle() {
               {row.map((key) => {
                 const status = keyboardStatus[key];
                 let glassClass = 'glass';
-                let textColor = 'text-gray-800';
+                let textColor = isDarkMode ? 'text-gray-200' : 'text-gray-800';
 
                 if (status === 'correct') {
                   glassClass = 'glass-correct';
@@ -615,7 +638,7 @@ export default function Wordle() {
           ))}
         </div>
 
-        <p className="text-center text-gray-500 text-sm mt-8 font-medium">
+        <p className={`text-center text-sm mt-8 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
           Guess the 5-letter word in 6 tries
         </p>
       </div>
@@ -630,33 +653,35 @@ export default function Wordle() {
                 {won ? 'You Won!' : 'Game Over'}
               </h2>
               {!won && (
-                <p className="text-gray-700 mt-2 font-medium">The word was <span className="font-bold text-indigo-600">{targetWord}</span></p>
+                <p className={`mt-2 font-medium ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                  The word was <span className="font-bold text-indigo-400">{targetWord}</span>
+                </p>
               )}
             </div>
 
             {/* Stats Grid */}
             <div className="grid grid-cols-4 gap-3 mb-6">
               <div className="text-center glass-tile rounded-xl p-3">
-                <div className="text-2xl font-bold text-gray-900">{stats.played}</div>
-                <div className="text-xs text-gray-600 font-semibold">Played</div>
+                <div className={`text-2xl font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>{stats.played}</div>
+                <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Played</div>
               </div>
               <div className="text-center glass-tile rounded-xl p-3">
-                <div className="text-2xl font-bold text-indigo-600">{winPercentage}</div>
-                <div className="text-xs text-gray-600 font-semibold">Win %</div>
+                <div className="text-2xl font-bold text-indigo-500">{winPercentage}</div>
+                <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Win %</div>
               </div>
               <div className="text-center glass-tile rounded-xl p-3">
-                <div className="text-2xl font-bold text-orange-600">{stats.currentStreak}</div>
-                <div className="text-xs text-gray-600 font-semibold">Streak</div>
+                <div className="text-2xl font-bold text-orange-500">{stats.currentStreak}</div>
+                <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Streak</div>
               </div>
               <div className="text-center glass-tile rounded-xl p-3">
-                <div className="text-2xl font-bold text-purple-600">{stats.maxStreak}</div>
-                <div className="text-xs text-gray-600 font-semibold">Best</div>
+                <div className="text-2xl font-bold text-purple-500">{stats.maxStreak}</div>
+                <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best</div>
               </div>
             </div>
 
             {/* Emoji Grid Preview */}
             <div className="glass-tile rounded-2xl p-5 mb-5">
-              <pre className="text-center text-sm leading-relaxed font-mono whitespace-pre-wrap text-gray-800">
+              <pre className={`text-center text-sm leading-relaxed font-mono whitespace-pre-wrap ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
                 {generateEmojiGrid()}
               </pre>
             </div>
