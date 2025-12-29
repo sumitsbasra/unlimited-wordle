@@ -204,10 +204,8 @@ export default function Wordle() {
 
       if (!isValid) {
         setShake(true);
-        setMessage('Not in word list');
         setTimeout(() => {
           setShake(false);
-          setMessage('');
         }, 1500);
         return;
       }
