@@ -405,11 +405,11 @@ export default function Wordle() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col items-center py-4 px-2 relative overflow-hidden ${
+    <div className={`min-h-screen flex flex-col items-center py-4 px-2 pb-safe relative overflow-hidden ${
       isDarkMode
         ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800'
         : 'bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50'
-    }`}>
+    }`} style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)' }}>
       {/* Fixed Background for iOS Safari */}
       <div className={`fixed inset-0 -z-10 ${
         isDarkMode
@@ -598,9 +598,9 @@ export default function Wordle() {
           {[0, 1, 2, 3, 4, 5].map(renderRow)}
         </div>
 
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-2 w-full px-1">
           {keyboardRows.map((row, rowIndex) => (
-            <div key={rowIndex} className="flex gap-1.5">
+            <div key={rowIndex} className="flex gap-1.5 justify-center w-full max-w-xl">
               {row.map((key) => {
                 const status = keyboardStatus[key];
                 let glassClass = 'glass';

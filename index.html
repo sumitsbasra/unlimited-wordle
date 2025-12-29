@@ -9,14 +9,25 @@
     <title>Unlimited Wordle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      html {
+        height: -webkit-fill-available;
+      }
       body {
         margin: 0;
         padding: 0;
         overflow-x: hidden;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
       }
       #root {
         min-height: 100vh;
         min-height: -webkit-fill-available;
+      }
+      @supports(padding: max(0px)) {
+        body {
+          padding-left: env(safe-area-inset-left);
+          padding-right: env(safe-area-inset-right);
+        }
       }
     </style>
   </head>
