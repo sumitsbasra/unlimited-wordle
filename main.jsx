@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import ReactDOM from 'react-dom/client';
 import { ALLOWED_WORDS } from './allowed-words.js';
 
 // Words organized by difficulty (common → obscure)
@@ -59,11 +60,11 @@ export default function Wordle() {
 
   // Load stats from storage on mount
   useEffect(() => {
-    const loadStats = async () => {
+    const loadStats = () => {
       try {
-        const result = await window.storage.get(STORAGE_KEY);
-        if (result && result.value) {
-          setStats(JSON.parse(result.value));
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          setStats(JSON.parse(stored));
         }
       } catch (e) {
         // Storage not available or key doesn't exist
@@ -73,9 +74,9 @@ export default function Wordle() {
   }, []);
 
   // Save stats to storage
-  const saveStats = async (newStats) => {
+  const saveStats = (newStats) => {
     try {
-      await window.storage.set(STORAGE_KEY, JSON.stringify(newStats));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(newStats));
     } catch (e) {
       // Storage not available
     }
@@ -698,3 +699,10 @@ export default function Wordle() {
     </div>
   );
 }
+
+// Mount the app
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <Wordle />
+  </React.StrictMode>
+);
