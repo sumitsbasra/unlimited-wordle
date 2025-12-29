@@ -71,7 +71,7 @@ Before the automatic deployment works, you need to configure GitHub Pages:
 3. Under **Source**, select **GitHub Actions**
 4. The next push to `main` will trigger the deployment
 
-Your site will be live at: `https://sumitsbasra.github.io/unlimited-wordle/`
+Your site will be live at: https://sumitsbasra.github.io/unlimited-wordle/
 
 ### Manual Deployment (Alternative)
 
