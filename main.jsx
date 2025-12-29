@@ -684,19 +684,19 @@ export default function Wordle() {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-4 gap-3 mb-6">
-              <div className="text-center glass-tile rounded-xl p-3">
+              <div className="flex flex-col items-center justify-center glass-tile rounded-xl p-3">
                 <div className={`text-2xl font-bold ${isDarkMode ? 'text-gray-100' : 'text-gray-900'}`}>{stats.played}</div>
                 <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Played</div>
               </div>
-              <div className="text-center glass-tile rounded-xl p-3">
+              <div className="flex flex-col items-center justify-center glass-tile rounded-xl p-3">
                 <div className="text-2xl font-bold text-indigo-500">{winPercentage}</div>
                 <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Win %</div>
               </div>
-              <div className="text-center glass-tile rounded-xl p-3">
+              <div className="flex flex-col items-center justify-center glass-tile rounded-xl p-3">
                 <div className="text-2xl font-bold text-orange-500">{stats.currentStreak}</div>
                 <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Streak</div>
               </div>
-              <div className="text-center glass-tile rounded-xl p-3">
+              <div className="flex flex-col items-center justify-center glass-tile rounded-xl p-3">
                 <div className="text-2xl font-bold text-purple-500">{stats.maxStreak}</div>
                 <div className={`text-xs font-semibold ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Best</div>
               </div>
@@ -733,7 +733,7 @@ export default function Wordle() {
               </button>
               <button
                 onClick={() => startNewGame()}
-                className="flex-1 flex items-center justify-center gap-2 glass-dark text-white font-bold py-4 px-5 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg"
+                className="flex-1 flex items-center justify-center gap-2 glass-dark text-white font-bold py-4 px-5 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg whitespace-nowrap"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
