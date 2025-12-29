@@ -551,7 +551,7 @@ export default function Wordle() {
         <div className="glass rounded-2xl p-4 mb-6 shadow-lg">
           <div className="relative flex items-center justify-between">
             {/* Difficulty Dropdown */}
-            <div className="relative">
+            <div className="relative z-50">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
