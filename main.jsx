@@ -600,7 +600,7 @@ export default function Wordle() {
         </div>
 
         {message && !showEndScreen && (
-          <div className={`text-center mb-4 py-3 px-5 rounded-xl font-semibold shadow-lg ${
+          <div className={`fixed top-24 left-1/2 -translate-x-1/2 z-40 text-center py-3 px-5 rounded-xl font-semibold shadow-lg animate-slideDown ${
             isValidating
               ? 'glass text-indigo-700'
               : 'glass-dark text-white'
