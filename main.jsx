@@ -405,11 +405,15 @@ export default function Wordle() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col items-center py-4 px-2 pb-safe relative overflow-hidden ${
+    <div className={`flex flex-col items-center py-4 px-2 relative overflow-y-auto overflow-x-hidden ${
       isDarkMode
         ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800'
         : 'bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50'
-    }`} style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)' }}>
+    }`} style={{
+      minHeight: '100vh',
+      minHeight: '100dvh',
+      paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)'
+    }}>
       {/* Fixed Background for iOS Safari */}
       <div className={`fixed inset-0 -z-10 ${
         isDarkMode
@@ -418,14 +422,14 @@ export default function Wordle() {
       }`} />
 
       {/* Animated Gradient Orbs */}
-      <div className={`fixed top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-float-slow -z-10 ${
+      <div className={`fixed -top-48 -left-48 w-96 h-96 rounded-full blur-3xl animate-float-slow -z-10 ${
         isDarkMode
-          ? 'bg-gradient-to-br from-indigo-400/30 to-purple-400/30'
+          ? 'bg-gradient-to-br from-indigo-500/40 to-purple-500/40'
           : 'bg-gradient-to-br from-blue-400/30 to-purple-400/30'
       }`} />
-      <div className={`fixed bottom-0 right-0 w-96 h-96 rounded-full blur-3xl animate-float-delayed -z-10 ${
+      <div className={`fixed -bottom-48 -right-48 w-96 h-96 rounded-full blur-3xl animate-float-delayed -z-10 ${
         isDarkMode
-          ? 'bg-gradient-to-br from-purple-400/30 to-pink-400/30'
+          ? 'bg-gradient-to-br from-purple-500/40 to-pink-500/40'
           : 'bg-gradient-to-br from-pink-400/30 to-orange-400/30'
       }`} />
 
