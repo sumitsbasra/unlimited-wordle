@@ -599,17 +599,16 @@ export default function Wordle() {
           </div>
         </div>
 
-        {message && !showEndScreen && (
-          <div className={`fixed top-24 left-1/2 -translate-x-1/2 z-40 text-center py-3 px-5 rounded-xl font-semibold shadow-lg animate-slideDown ${
-            isValidating
-              ? 'glass text-indigo-700'
-              : 'glass-dark text-white'
-          }`}>
-            {message}
-          </div>
-        )}
-
-        <div className="flex flex-col items-center gap-1.5 mb-6">
+        <div className="relative flex flex-col items-center gap-1.5 mb-6">
+          {message && !showEndScreen && (
+            <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 text-center py-3 px-5 rounded-xl font-semibold shadow-lg animate-slideDown ${
+              isValidating
+                ? 'glass text-indigo-700'
+                : 'glass-dark text-white'
+            }`}>
+              {message}
+            </div>
+          )}
           {[0, 1, 2, 3, 4, 5].map(renderRow)}
         </div>
 
