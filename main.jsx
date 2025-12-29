@@ -420,12 +420,12 @@ export default function Wordle() {
       {/* Animated Gradient Orbs */}
       <div className={`fixed top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-float-slow -z-10 ${
         isDarkMode
-          ? 'bg-gradient-to-br from-indigo-500/20 to-purple-500/20'
+          ? 'bg-gradient-to-br from-indigo-400/30 to-purple-400/30'
           : 'bg-gradient-to-br from-blue-400/30 to-purple-400/30'
       }`} />
       <div className={`fixed bottom-0 right-0 w-96 h-96 rounded-full blur-3xl animate-float-delayed -z-10 ${
         isDarkMode
-          ? 'bg-gradient-to-br from-purple-500/20 to-pink-500/20'
+          ? 'bg-gradient-to-br from-purple-400/30 to-pink-400/30'
           : 'bg-gradient-to-br from-pink-400/30 to-orange-400/30'
       }`} />
 
