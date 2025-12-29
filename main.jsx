@@ -507,7 +507,7 @@ export default function Wordle() {
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="glass rounded-2xl p-4 mb-6 shadow-lg">
-          <div className="flex items-center justify-between">
+          <div className="relative flex items-center justify-between">
             {/* Difficulty Dropdown */}
             <div className="relative">
               <button
@@ -545,7 +545,7 @@ export default function Wordle() {
               )}
             </div>
 
-            <h1 className="text-3xl font-bold tracking-wider bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h1 className="absolute left-1/2 -translate-x-1/2 text-3xl font-bold tracking-wider bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               wordle
             </h1>
 
