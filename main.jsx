@@ -420,13 +420,13 @@ export default function Wordle() {
   };
 
   return (
-    <div className={`flex flex-col items-center py-4 px-2 relative overflow-y-auto overflow-x-hidden ${
+    <div className={`flex flex-col items-center py-4 px-2 relative overflow-hidden ${
       isDarkMode
         ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800'
         : 'bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50'
     }`} style={{
-      minHeight: '100vh',
-      minHeight: '100dvh',
+      height: '100vh',
+      height: '100dvh',
       paddingBottom: 'max(env(safe-area-inset-bottom), 1rem)'
     }}>
       {/* Fixed Background for iOS Safari */}
