@@ -660,10 +660,6 @@ export default function Wordle() {
             </div>
           ))}
         </div>
-
-        <p className={`text-center text-sm mt-8 font-medium ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-          Guess the 5-letter word in 6 tries
-        </p>
       </div>
 
       {/* End Screen Modal */}
