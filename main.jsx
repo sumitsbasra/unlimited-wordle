@@ -572,7 +572,7 @@ export default function Wordle() {
               </button>
 
               {dropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 glass rounded-xl shadow-xl overflow-hidden z-10 min-w-[140px]">
+                <div className="absolute top-full left-0 mt-2 glass rounded-xl shadow-xl overflow-hidden z-50 min-w-[140px]">
                   {['easy', 'medium', 'hard'].map((diff) => (
                     <button
                       key={diff}
