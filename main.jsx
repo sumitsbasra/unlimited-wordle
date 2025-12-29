@@ -405,8 +405,12 @@ export default function Wordle() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-4 px-2 relative overflow-hidden">
-      {/* Gradient Background */}
+    <div className={`min-h-screen flex flex-col items-center py-4 px-2 relative overflow-hidden ${
+      isDarkMode
+        ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800'
+        : 'bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50'
+    }`}>
+      {/* Fixed Background for iOS Safari */}
       <div className={`fixed inset-0 -z-10 ${
         isDarkMode
           ? 'bg-gradient-to-br from-gray-900 via-slate-900 to-gray-800'
@@ -620,7 +624,7 @@ export default function Wordle() {
                     key={key}
                     onClick={() => handleKeyPress(key)}
                     disabled={gameOver || isValidating}
-                    className={`${glassClass} ${textColor} ${isWide ? 'px-4 sm:px-5' : 'w-9 sm:w-11'} h-13 sm:h-14 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center shadow-md ${
+                    className={`${glassClass} ${textColor} ${isWide ? 'px-4 sm:px-5' : 'w-9 sm:w-11'} h-12 sm:h-14 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center justify-center shadow-md ${
                       gameOver || isValidating
                         ? 'opacity-50 cursor-not-allowed'
                         : 'hover:scale-105 active:scale-95'
